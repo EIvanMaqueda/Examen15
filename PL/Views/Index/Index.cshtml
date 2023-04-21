@@ -1,0 +1,57 @@
+﻿@model Proyecto_ENT.Producto
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <h2>Aseguradora</h2>
+    </div>
+    <br />
+    <div class="row">
+        <div style="float:right">
+            @Html.ActionLink("Agregar", "Form", "Index", htmlAttributes: new { @class = "btn btn-success" })
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        @if (Model.Productos != null)
+        {
+            //tabla
+            <table class="table table-bordered table-responsive">
+                <thead>
+                    <tr>
+                        <td class="text-center">IdProducto</td>
+                        <td class="text-center" style=" font-weight:bold;">Descripcion</td>
+                        <td class="text-center" style=" font-weight:bold;">IdUsuario</td>
+                        <td class="text-center" style=" font-weight:bold;">Fecha de Creacion</td>
+
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (Proyecto_ENT.Producto producto in Model.Productos)
+                    {
+                        <tr>
+                            <td>@producto.IdProducto</td>
+                            <td>@producto.Descripcion</td>
+                            <td>@producto.IdUsuario</td>
+                            <td>@producto.FechaCreacion</td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+
+        }
+        else
+        {
+            <div class="alert alert-danger" role="alert">Ocurrio un error al realizar la consulta </div>
+        }
+    </div>
+</div>
+
+
+
